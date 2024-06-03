@@ -5,7 +5,7 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
-import DiscordProvider from "next-auth/providers/discord";
+import KakaoProvider from "next-auth/providers/kakao";
 
 import { env } from "~/env";
 import { db } from "~/server/db";
@@ -57,6 +57,10 @@ export const authOptions: NextAuthOptions = {
      *
      * @see https://next-auth.js.org/providers/github
      */
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID ?? "",
+      clientSecret: process.env.KAKAO_CLIENT_SECRET ?? "",
+    }),
   ],
 };
 

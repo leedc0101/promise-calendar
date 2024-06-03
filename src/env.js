@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
+    DIRECT_URL: z.string().url(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -20,8 +21,10 @@ export const env = createEnv({
       // Since NextAuth.js automatically uses the VERCEL_URL if present.
       (str) => process.env.VERCEL_URL ?? str,
       // VERCEL_URL doesn't include `https` so it cant be validated as a URL
-      process.env.VERCEL ? z.string() : z.string().url()
+      process.env.VERCEL ? z.string() : z.string().url(),
     ),
+    KAKAO_CLIENT_ID: z.string(),
+    KAKAO_CLIENT_SECRET: z.string(),
   },
 
   /**
@@ -42,8 +45,9 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+    KAKAO_CLIENT_ID: process.env.KAKAO_CLIENT_ID,
+    KAKAO_CLIENT_SECRET: process.env.KAKAO_CLIENT_SECRET,
+    DIRECT_URL: process.env.DIRECT_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
