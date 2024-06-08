@@ -1,13 +1,15 @@
 import Link from "next/link";
 
 import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 import { LoginButton } from "./components/Buttons/LoginButton";
 import { Avatar } from "./components/Avatar";
 import { NewEventButton } from "./components/Buttons/NewEventButton";
 import { ShowEventListButton } from "./components/Buttons/ShowEventListButton";
+import { UserProfile } from "./components/UserProfile";
 
 export default async function Home() {
+  const session = await getServerAuthSession();
+
   return (
     <div className="flex h-full flex-col bg-white dark:bg-gray-950 ">
       <header className="flex items-center justify-between p-4 shadow-sm">
@@ -22,7 +24,7 @@ export default async function Home() {
             Manage Participants
           </Button> */}
 
-          <LoginButton />
+          {session?.user ? <UserProfile /> : <LoginButton />}
         </div>
       </header>
       <div className="grid flex-1 grid-cols-[1fr_300px] gap-6 p-6">

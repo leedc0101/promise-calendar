@@ -17,7 +17,9 @@ export const ShowEventListButton = () => {
         <MdMenu />
       </GhostButton>
       <div
-        className={`fixed left-0 top-0 z-20 h-full w-64 -translate-x-${open ? "0" : "full"} transform bg-white shadow-lg transition-all duration-500`}
+        className={`fixed inset-0 left-0 top-0 z-50 w-64 transform bg-white transition-transform dark:bg-gray-950 ${
+          open ? "translate-x-0" : "-translate-x-64"
+        } transition-all duration-500`}
       >
         <GhostButton onClick={closeDrawer}>
           <CgClose />
